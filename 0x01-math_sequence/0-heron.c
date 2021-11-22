@@ -10,11 +10,16 @@
 t_cell *heron(double p, double x0)
 {
 	double d;
-	t_cell ret;
+	t_cell *ret;
 
-	d = (1 / 2) * (x0 + (p / x0));
+	d = (0.5) * (x0 + (p / x0));
 	ret = (t_cell *)malloc(sizeof(t_cell));
 	if (ret == NULL)
 		return (NULL);
-	ret->d = d;
-	if (d - 
+	ret->elt = x0;
+	if (((d - x0) * (d - x0)) <= 10E-14)
+		ret->next = NULL;
+	else
+		ret->next = heron(p, d);
+	return (ret);
+}
