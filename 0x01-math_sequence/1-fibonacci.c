@@ -1,8 +1,10 @@
 #include "fibonacci.h"
 
 /**
- * Create_Fib - Creates a fibonacci term
- * Return: Pointer to term
+ * Create_Fib - Creates a fibonacci sequence
+ * @num1: First term of fibonacci sequence
+ * @num2: Second term of Fibonacci sequence
+ * Return: Pointer to sequence
  */
 
 t_cell *Create_Fib(double num1, double num2)
@@ -52,7 +54,7 @@ double gold_number(t_cell *head)
 {
 	double gold, aux;
 
-	aux = ((head->next)->elt) / (head->elt); 
+	aux = ((head->next)->elt) / (head->elt);
 	gold = (((head->next)->next)->elt) / ((head->next)->elt);
 	if (fabs((aux / gold) - 1) >= 10E-7)
 		gold = gold_number(head->next);
