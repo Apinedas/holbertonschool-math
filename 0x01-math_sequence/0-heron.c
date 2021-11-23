@@ -45,7 +45,7 @@ t_cell *heronaux(double p, double x0)
 	if (((d - x0) * (d - x0)) <= 10E-14)
 		ret->next = NULL;
 	else
-		ret->next = heron(p, d);
+		ret->next = heronaux(p, d);
 	return (ret);
 }
 
@@ -62,6 +62,6 @@ t_cell *heron(double p, double x0)
 	t_cell *ret;
 
 	ret = heronaux(p, x0);
-	/*ret = reverse_list(&ret);*/
+	ret = reverse_list(&ret);
 	return (ret);
 }
