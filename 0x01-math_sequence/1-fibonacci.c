@@ -1,6 +1,29 @@
 #include "fibonacci.h"
 
 /**
+ * reverse_list - reverses a linked list.
+ * @head: Pointer to list's head pointer
+ * Return: Pointer to first node of reversed list
+ */
+
+t_cell *reverse_list(t_cell **head)
+{
+	t_cell *aux, *tmp;
+
+	aux = *head;
+	tmp = NULL;
+	while (*head)
+	{
+		(*head) = (*head)->next;
+		aux->next = tmp;
+		tmp = aux;
+		aux = *head;
+	}
+	(*head) = tmp;
+	return (*head);
+}
+
+/**
  * Create_Fib - Creates a fibonacci sequence
  * @num1: First term of fibonacci sequence
  * @num2: Second term of Fibonacci sequence
@@ -41,6 +64,7 @@ t_cell *Fibonnaci()
 	f1->next = f2;
 	f2->elt = (double)1;
 	f2->next = Create_Fib(f1->elt, f2->elt);
+	f1 = reverse_list(&f1);
 	return (f1);
 }
 
@@ -54,8 +78,8 @@ double gold_number(t_cell *head)
 {
 	double gold, aux;
 
-	aux = ((head->next)->elt) / (head->elt);
-	gold = (((head->next)->next)->elt) / ((head->next)->elt);
+	gold =  (double)(head->elt) / (double)((head->next)->elt);
+	aux = (double)((head->next)->elt) / (double)(((head->next)->next)->elt);
 	if (fabs((aux / gold) - 1) >= 10E-7)
 		gold = gold_number(head->next);
 	return (gold);

@@ -13,7 +13,7 @@
 
 typedef struct cell
 {
-	double elt;
+	int elt;
 	struct cell *next;
 } t_cell;
 
